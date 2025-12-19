@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { FaGraduationCap, FaUsers, FaTrophy, FaLightbulb, FaHeart, FaStar, FaBook, FaRocket, FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import { FaGraduationCap, FaUsers, FaTrophy, FaLightbulb, FaHeart, FaStar, FaBook, FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss } from 'react-icons/si';
 
@@ -11,6 +11,13 @@ import BounceCards from "./component/BounceCards";
 import DecryptedText from "./component/DecryptedText";
 import LogoLoop from "./component/LogoLoop";
 import Masonry from "react-masonry-css";
+import CountUp from "@/components/CountUp";
+import CurvedLoop from "@/components/CurvedLoop";
+import TextType from "@/components/TextType";
+import ScrollFloat from "@/components/ScrollFloat";
+
+import { students } from "./component/students";
+import StudentCard from "./component/StudentCard";
 
 import Loader from './loader'
 
@@ -109,7 +116,7 @@ function Navbar() {
             />
           </motion.a>
           <div className="hidden md:flex space-x-8">
-            {["About", "Features", "Activities", "Contact"].map((item) => (
+            {["About", "Features", "Photos", "Contact"].map((item) => (
               <motion.a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -158,7 +165,7 @@ function HeroSection() {
           </motion.div>
           
           <motion.h1
-            className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-700 bg-clip-text text-transparent"
+            className="text-6xl md:text-8xl font-bold mb-6 bg-linear-to-r from-blue-600 via-blue-500 to-blue-700 bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
@@ -243,6 +250,17 @@ function HeroSection() {
 function AboutSection() {
   return (
     <section id="about" className="py-24 bg-white">
+      <div className="flex justify-center items-center text-black w-full h-120 mb-30">
+        <CurvedLoop
+          marqueeText="Creative ✦ With ✦ Nine ✦ Excellent ✦"
+          speed={3}
+          curveAmount={500}
+          direction="right"
+          interactive={true}
+          className="text-black"
+        />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
@@ -253,7 +271,7 @@ function AboutSection() {
         >
           <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">About Us</span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-2 mb-4">Who We Are</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-linear-to-r from-blue-400 to-blue-600 mx-auto rounded-full" />
         </motion.div>
         
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -265,12 +283,12 @@ function AboutSection() {
           >
             <div className="relative">
               <motion.div
-                className="absolute -inset-4 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl opacity-20 blur-lg"
+                className="absolute -inset-4 bg-linear-to-r from-blue-400 to-blue-600 rounded-2xl opacity-20 blur-lg"
                 animate={{ rotate: [0, 2, -2, 0] }}
                 transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
               />
               <motion.div
-                className="relative bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl p-8 text-white"
+                className="relative bg-linear-to-br from-blue-500 to-blue-700 rounded-2xl p-8 text-white"
                 whileHover={{ scale: 1.03, y: -5, boxShadow: "0 20px 40px rgba(0,0,0,0.15)" }}
                 transition={{ type: "spring", stiffness: 120 }}
               >
@@ -349,6 +367,19 @@ function AboutSection() {
             </motion.div>
           </motion.div>
         </div>
+
+        <div className="mt-12 w-full text-center font-semibold">
+          <ScrollFloat 
+            animationDuration={1}
+            ease="back.inOut(2)"
+            scrollStart="center bottom+=50%"
+            scrollEnd="bottom bottom-=40%"
+            stagger={0.03}
+            textClassName="text-sm"
+          >
+            Keep scrolling and discover the amazing projects we've built together — every idea     tells a story.
+          </ScrollFloat>
+        </div>
       </div>
     </section>
   );
@@ -365,7 +396,7 @@ function FeaturesSection() {
   ];
 
   return (
-    <section id="features" className="py-24 bg-gradient-to-b from-blue-50 to-white">
+    <section id="features" className="py-24 bg-linear-to-b from-blue-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
@@ -376,8 +407,21 @@ function FeaturesSection() {
         >
           <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">What Makes Us Special</span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-2 mb-4">Our Core Values</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-linear-to-r from-blue-400 to-blue-600 mx-auto rounded-full" />
         </motion.div>
+
+        <div className="text-black font-semibold flex items-center justify-center mb-10 -mt-10 text-center">
+          <TextType 
+            text={["A hub of innovation and curiosity, where every challenge becomes an opportunity to explore, create, and excel.", 
+              "Fostering creativity, ambition, and collaboration – a journey of learning that sparks ideas and transforms dreams into reality.", 
+              "Together we learn, together we grow, nurturing curiosity and building skills that go beyond the classroom."
+            ]}
+            typingSpeed={95}
+            pauseDuration={1500}
+            showCursor={true}
+            cursorCharacter="|"
+          />
+        </div>
         
         <motion.div
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
@@ -393,7 +437,7 @@ function FeaturesSection() {
               variants={fadeInUp}
               whileHover={{ y: -10, scale: 1.02 }}
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-16 h-16 bg-linear-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <feature.icon className="text-white text-2xl" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
@@ -401,19 +445,42 @@ function FeaturesSection() {
             </motion.div>
           ))}
         </motion.div>
+
+        <div className="flex justify-center">
+          <div className="flex items-center mt-16 -mb-20 text-xl lg:text-5xl sm:text-3xl font-bold">
+            <CountUp 
+              from={0}
+              to={29}
+              separator="."
+              direction="up"
+              duration={2}
+              className="count-up-text mr-3"
+            />
+
+            <h1 className="text-black">Students abroad</h1>
+          </div>
+        </div>
+
+        <div className="flex justify-center">
+          <div className="flex items-center mt-25 text-xl lg:text-5xl sm:text-3xl font-bold">
+            <CountUp 
+              from={0}
+              to={1006}
+              separator="."
+              direction="up"
+              duration={4}
+              className="count-up-text mr-3"
+            />
+
+            <h1 className="text-black">Days since grade 7th</h1>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
 function ActivitiesSection() {
-  const activities = [
-    { title: "Academic Competitions", description: "Participating in various academic olympiads and competitions", color: "from-blue-500 to-blue-600" },
-    { title: "Sports & Fitness", description: "Regular sports activities promoting teamwork and health", color: "from-green-500 to-green-600" },
-    { title: "Cultural Events", description: "Celebrating diversity through performances and festivals", color: "from-purple-500 to-purple-600" },
-    { title: "Community Service", description: "Giving back to society through volunteer programs", color: "from-orange-500 to-orange-600" }
-  ];
-
   return (
     <section id="activities" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -426,7 +493,7 @@ function ActivitiesSection() {
         >
           <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">Memories</span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-2 mb-4">Our Photos</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-linear-to-r from-blue-400 to-blue-600 mx-auto rounded-full" />
         </motion.div>
 
         <div className="flex justify-center items-center">
@@ -450,7 +517,7 @@ function ActivitiesSection() {
         >
           {items.map((item, i) => (
             <div key={i} className="mb-4 rounded-lg overflow-hidden">
-              <img src={item.image} className="w-full object-cover" loading="lazy" style={{ height: `${item.height}px`, display: 'block' }}/>
+              <img alt="img" src={item.image} className="w-full object-cover" loading="lazy" style={{ height: `${item.height}px`, display: 'block' }}/>
             </div>
           ))}
         </Masonry>
@@ -475,9 +542,35 @@ function ActivitiesSection() {
   );
 }
 
+function MemberSection() {
+  return (
+    <section id="member" className="py-24 bg-linear-to-b from-white to-blue-50">
+      <motion.div
+        className="text-center mb-16"
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUp}
+      >
+        <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">ALL MEMBERS</span>
+        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-2 mb-4">Our Member</h2>
+        <div className="w-24 h-1 bg-linear-to-r from-blue-400 to-blue-600 mx-auto rounded-full" />
+      </motion.div>
+
+      <div className="flex justify-center items-center">
+        <div className="p-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+          {students.map((s, idx) => (
+            <StudentCard key={idx} name={s.name} role={s.role} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function ContactSection() {
   return (
-    <section id="contact" className="py-24 bg-gradient-to-b from-white to-blue-50">
+    <section id="contact" className="py-24 bg-linear-to-b from-white to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
@@ -488,7 +581,7 @@ function ContactSection() {
         >
           <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">Get In Touch</span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-2 mb-4">Contact Us</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-linear-to-r from-blue-400 to-blue-600 mx-auto rounded-full" />
         </motion.div>
         
         <motion.div
@@ -545,7 +638,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <motion.h3
-            className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent"
+            className="text-2xl font-bold mb-4 bg-linear-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -582,7 +675,7 @@ export default function Home() {
 
           <div className="fixed inset-0 -z-10">
             <Aurora
-              colorStops={["#00b4d8", "#48cae4", "#caf0f8"]}
+              colorStops={["#ccdbfd", "#ccdbfd", "#ccdbfd"]}
               blend={0.6}
               amplitude={0.5}
               speed={0.6}
@@ -594,6 +687,7 @@ export default function Home() {
           <AboutSection />
           <FeaturesSection />
           <ActivitiesSection />
+          <MemberSection />
           <ContactSection />
           <Footer />
         </main>

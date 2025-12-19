@@ -16,7 +16,11 @@ const allImages = [
   "/images/12.jpg",
 ];
 
-export default function Loader({ onLoaded }) {
+interface LoaderProps {
+    onLoaded: () => void;
+}
+
+export default function Loader({ onLoaded }: LoaderProps) {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {

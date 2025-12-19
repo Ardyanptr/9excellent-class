@@ -28,7 +28,7 @@ export default function Loader({ onLoaded }: LoaderProps) {
     const [isComplete, setIsComplete] = useState(false);
     const startTime = useRef(Date.now());
     const progressRef = useRef(0);
-    const animationRef = useRef<number>();
+    const animationRef = useRef<number | null>(null);
 
     // Smooth progress animation
     useEffect(() => {

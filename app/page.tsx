@@ -44,10 +44,10 @@ const techLogos = [
 ];
 
 const images = [
+  "/images/5.jfif",
   "/images/1.jfif",
-  "/images/2.JPG",
-  "/images/3.JPG",
-  "/images/4.JPG",
+  "/images/5.jfif",
+  "/images/1.jfif",
   "/images/5.jfif"
 ];
 
@@ -445,7 +445,7 @@ function ActivitiesSection() {
 
         <Masonry 
           breakpointCols={breakpointColumnsObj}
-          className="flex w-auto gap-4"
+          className="flex w-auto gap-4 mt-10"
           columnClassName="masonry-column"
         >
           {items.map((item, i) => (
@@ -455,7 +455,8 @@ function ActivitiesSection() {
           ))}
         </Masonry>
         
-        <div className="flex justify-center mt-10 pt-10 -mb-40" style={{ height: '200px', position: 'relative', overflow: 'hidden'}}>
+        <div className="flex flex-col items-center justify-center mt-10 pt-10 -mb-20" style={{ height: '200px', position: 'relative', overflow: 'hidden'}}>
+          <p className="mb-6 text-center text-lg font-medium">Technology I used</p>
           <LogoLoop
             logos={techLogos}
             speed={60}

@@ -506,7 +506,7 @@ function ContactSection() {
               <FaEnvelope className="text-blue-600 text-2xl" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Email</h3>
-            <p className="text-gray-600">9excellent@school.edu</p>
+            <p className="text-gray-600">ardyanpersonal@gmail.com</p>
           </motion.div>
           
           <motion.div
@@ -518,7 +518,7 @@ function ContactSection() {
               <FaMapMarkerAlt className="text-blue-600 text-2xl" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Location</h3>
-            <p className="text-gray-600">Building A, Room 9E</p>
+            <p className="text-gray-600">Building A. Second Story, Room 9E</p>
           </motion.div>
           
           <motion.div
@@ -530,7 +530,7 @@ function ContactSection() {
               <FaPhone className="text-blue-600 text-2xl" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Contact</h3>
-            <p className="text-gray-600">Class Representative</p>
+            <p className="text-gray-600">+62 895 0636 1240</p>
           </motion.div>
         </motion.div>
       </div>
@@ -549,11 +549,20 @@ function Footer() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            9 Excellent
+            <div className="flex justify-center items-center">
+              <Image
+                src="/logo-wt.png"
+                alt="9 Excellent Logo"
+                width={220}
+                height={220}
+                className="ml-1 lg:-ml-10 md:-ml-4"
+                priority
+              />
+            </div>
           </motion.h3>
           <p className="text-gray-400 mb-6">Excellence is not a destination, it is a continuous journey.</p>
           <div className="border-t border-gray-800 pt-6">
-            <p className="text-gray-500 text-sm">© {new Date().getFullYear()} Class 9 Excellent. Made with love.</p>
+            <p className="text-gray-500 text-sm">© {new Date().getFullYear()}Made with ❤️ on Indonesia.</p>
           </div>
         </div>
       </div>

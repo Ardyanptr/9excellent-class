@@ -6,7 +6,7 @@ import { useState } from "react";
 // React Bits Component
 import Aurora from "@/components/Aurora";
 
-// Loader
+// Component
 import Loader from './function/Loader'
 
 // Sections

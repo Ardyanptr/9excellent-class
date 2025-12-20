@@ -133,11 +133,11 @@ const AboutSection = () => {
             animationDuration={1}
             ease="back.inOut(2)"
             scrollStart="center bottom+=50%"
-            scrollEnd="bottom bottom-=40%"
+            scrollEnd="bottom bottom-=50%"
             stagger={0.03}
             textClassName="text-sm"
           >
-            Keep scrolling and discover the amazing projects we've built together — every idea     tells a story.
+            Keep scrolling and discover the amazing projects.
           </ScrollFloat>
         </div>
       </div>

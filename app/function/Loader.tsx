@@ -20,17 +20,15 @@ interface LoaderProps {
     onLoaded: () => void;
 }
 
-export default function Loader({ onLoaded }: LoaderProps) {
+const Loader = ({ onLoaded }: LoaderProps) => {
     const [progress, setProgress] = useState(0);
     const [loadedCount, setLoadedCount] = useState(0);
     const [eta, setEta] = useState("Calculating...");
     const [currentFile, setCurrentFile] = useState("");
     const [isComplete, setIsComplete] = useState(false);
-    const startTime = useRef(Date.now());
     const progressRef = useRef(0);
     const animationRef = useRef<number | null>(null);
 
-    // Smooth progress animation
     useEffect(() => {
         const animateProgress = () => {
             if (progressRef.current < progress) {
@@ -53,7 +51,7 @@ export default function Loader({ onLoaded }: LoaderProps) {
         let completed = 0;
         const loadTimes: number[] = [];
 
-        allImages.forEach((src, index) => {
+        allImages.forEach((src) => {
             const img = new Image();
             img.src = src;
             
@@ -96,10 +94,10 @@ export default function Loader({ onLoaded }: LoaderProps) {
     }, [onLoaded]);
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-gray-900 to-black">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-linear-to-br from-gray-900 to-black">
             <div className="relative w-full max-w-2xl px-8">
                 {/* Animated background elements */}
-                <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-2xl blur-xl animate-pulse"></div>
+                <div className="absolute -inset-4 bg-linear-to-r from-blue-500/10 to-cyan-500/10 rounded-2xl blur-xl animate-pulse"></div>
                 
                 <div className="relative bg-gray-800/90 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 shadow-2xl">
                     {/* Header */}
@@ -128,15 +126,15 @@ export default function Loader({ onLoaded }: LoaderProps) {
                         {/* Main progress bar */}
                         <div className="relative h-3 bg-gray-700 rounded-full overflow-hidden">
                             {/* Animated shimmer effect */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent animate-shimmer"></div>
+                            <div className="absolute inset-0 bg-linear-to-r from-transparent via-blue-500/30 to-transparent animate-shimmer"></div>
                             
                             {/* Progress fill with gradient */}
                             <div 
-                                className="absolute left-0 top-0 h-full bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-300 ease-out rounded-full"
+                                className="absolute left-0 top-0 h-full bg-linear-to-r from-blue-500 to-cyan-400 transition-all duration-300 ease-out rounded-full"
                                 style={{ width: `${progressRef.current}%` }}
                             >
                                 {/* Glowing effect on progress */}
-                                <div className="absolute right-0 top-0 w-4 h-full bg-gradient-to-r from-transparent to-white/30 blur-sm"></div>
+                                <div className="absolute right-0 top-0 w-4 h-full bg-linear-to-r from-transparent to-white/30 blur-sm"></div>
                             </div>
                         </div>
                         
@@ -181,7 +179,7 @@ export default function Loader({ onLoaded }: LoaderProps) {
 
                     {/* Completion indicator */}
                     {isComplete && (
-                        <div className="mt-6 p-4 bg-gradient-to-r from-blue-500/20 to-green-500/20 rounded-lg border border-blue-500/30">
+                        <div className="mt-6 p-4 bg-linear-to-r from-blue-500/20 to-green-500/20 rounded-lg border border-blue-500/30">
                             <div className="flex items-center justify-center space-x-3 text-blue-400">
                                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -206,3 +204,5 @@ export default function Loader({ onLoaded }: LoaderProps) {
         </div>
     );
 }
+
+export default Loader
